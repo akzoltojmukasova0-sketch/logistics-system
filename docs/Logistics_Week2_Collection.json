@@ -1,0 +1,292 @@
+{
+  "info": {
+    "name": "Logistics_Routes_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "System Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/system-info",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "system-info"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get All Routes (TRUCK) — 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/routes?transportType=TRUCK",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes"
+          ],
+          "query": [
+            {
+              "key": "transportType",
+              "value": "TRUCK"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Route By ID r2 — 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/routes/r2",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes",
+            "r2"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Route — 201",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/routes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"OSJ104\",\n  \"originCity\": \"Ош\",\n  \"destinationCity\": \"Жалал-Абад\",\n  \"transportType\": \"VAN\",\n  \"plannedDistanceKm\": 100,\n  \"plannedDurationMin\": 110\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Validation Error — 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/routes",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"originCity\": \"Ош\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Update Route r1 — 200",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/routes/r1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes",
+            "r1"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"code\": \"BSO101\",\n  \"originCity\": \"Бишкек\",\n  \"destinationCity\": \"Ош\",\n  \"transportType\": \"TRUCK\",\n  \"plannedDistanceKm\": 615,\n  \"plannedDurationMin\": 620\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Delete Route r3 — 204",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/routes/r3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes",
+            "r3"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Deleted Route r3 — 404",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/routes/r3",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "routes",
+            "r3"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Couriers (VAN) — 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/couriers?vehicleType=VAN",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "couriers"
+          ],
+          "query": [
+            {
+              "key": "vehicleType",
+              "value": "VAN"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Courier — 201",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/couriers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "couriers"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Элнура Осмонова\",\n  \"phone\": \"+996772345678\",\n  \"licenseNumber\": \"KG100003\",\n  \"vehicleType\": \"CAR\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Create Courier Validation Error — 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/couriers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "couriers"
+          ]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Эл\",\n  \"phone\": \"123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5000/api/v1"
+    }
+  ]
+}
