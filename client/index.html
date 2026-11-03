@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Логистика — управление маршрутами</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>Система оценки эффективности логистических маршрутов</h1>
+    <h2>Модуль управления маршрутами доставки</h2>
+  </header>
+
+  <main class="container">
+    <!-- Практика 1: состояние сервера -->
+    <section class="card">
+      <h3>Состояние сервера</h3>
+      <p>Статус: <strong id="status">Ожидание...</strong> · Время сервера: <span id="time">-</span></p>
+      <p>Node.js: <span id="nodeVersion">-</span> · Время работы: <span id="uptime">-</span> с <small>(обновляется каждые 5 с)</small></p>
+    </section>
+
+    <!-- Форма создания маршрута -->
+    <section class="card">
+      <h3>Добавить новый маршрут</h3>
+      <form id="routeForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="routeCode">Код маршрута:</label>
+            <input type="text" id="routeCode" required placeholder="напр. OSJ104">
+          </div>
+          <div class="form-group">
+            <label for="transportType">Тип транспорта:</label>
+            <select id="transportType">
+              <option value="TRUCK">Грузовик (TRUCK)</option>
+              <option value="VAN">Фургон (VAN)</option>
+              <option value="CAR">Легковой (CAR)</option>
+              <option value="MOTORCYCLE">Мотоцикл (MOTORCYCLE)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="originCity">Откуда:</label>
+            <input type="text" id="originCity" required placeholder="напр. Ош">
+          </div>
+          <div class="form-group">
+            <label for="destinationCity">Куда:</label>
+            <input type="text" id="destinationCity" required placeholder="напр. Жалал-Абад">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="distance">Плановое расстояние, км:</label>
+            <input type="number" id="distance" min="1" required value="100">
+          </div>
+          <div class="form-group">
+            <label for="duration">Плановое время в пути, мин:</label>
+            <input type="number" id="duration" min="1" required value="120">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить маршрут</button>
+      </form>
+      <div id="formAlert" class="alert hidden"></div>
+    </section>
+
+    <!-- Реестр маршрутов -->
+    <section class="card">
+      <div class="section-header">
+        <h3>Реестр маршрутов</h3>
+        <button id="btnRefresh" class="btn btn-secondary">Обновить</button>
+      </div>
+      <input type="text" id="searchInput" placeholder="Поиск по названию маршрута...">
+      <div id="loadingSpinner" class="spinner hidden">Загрузка данных...</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Код</th>
+            <th>Маршрут</th>
+            <th>Транспорт</th>
+            <th>Расстояние</th>
+            <th>Время в пути</th>
+            <th>Действия</th>
+          </tr>
+        </thead>
+        <tbody id="routesTbody"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
